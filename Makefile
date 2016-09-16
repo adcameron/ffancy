@@ -1,6 +1,8 @@
 CC = gcc
 CFLAGS = -Wall -Werror -lm
 
+all : ffancy progeny prostat metrictester add_periodograms ffa2best
+
 %.o : %.c
 	$(CC) $(CFLAGS) -c -o $@ $<
 
