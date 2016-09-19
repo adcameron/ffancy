@@ -7,7 +7,7 @@
 
 // User defined libraries
 #include "metrics.h"
-#include "stringsequal.h"
+#include "equalstrings.h"
 
 #define TRUE 1
 #define FALSE 0
@@ -50,13 +50,13 @@ int main(int argc, char** argv) {
   if (argc > 1) {
     i=1;
     while (i < argc) {
-      if (strings_equal(argv[i],"-a")) {
+      if (equal_strings(argv[i],"-a")) {
 	i++;
 	metric_choice = atoi(argv[i]);
-      } else if (strings_equal(argv[i], "-h") || strings_equal(argv[i], "--help")) {
+      } else if (equal_strings(argv[i], "-h") || equal_strings(argv[i], "--help")) {
 	metrictester_help();
 	exit(0);
-      } else if (strings_equal(argv[i], "-i")) {
+      } else if (equal_strings(argv[i], "-i")) {
 	i++;
 	inputfile = fopen(argv[i], "r");
       } else {

@@ -6,7 +6,7 @@
 #include <assert.h>
 
 // User defined libraries
-#include "stringsequal.h"
+#include "equalstrings.h"
 
 #define TRUE 1
 #define FALSE 0
@@ -62,16 +62,16 @@ int main(int argc, char** argv) {
   if (argc > 1) {
     ii=1;
     while (ii < argc) {
-      if (strings_equal(argv[ii],"-f1")) {
+      if (equal_strings(argv[ii],"-f1")) {
 	ii++;
         inputfile1 = fopen(argv[ii], "r");
-      } else if (strings_equal(argv[ii],"-f2")) {
+      } else if (equal_strings(argv[ii],"-f2")) {
 	ii++;
 	inputfile2 = fopen(argv[ii], "r");
-      } else if (strings_equal(argv[ii],"-o")) {
+      } else if (equal_strings(argv[ii],"-o")) {
 	ii++;
 	outputfile = fopen(argv[ii], "w+");
-      } else if (strings_equal(argv[ii], "-h") || strings_equal(argv[ii], "--help")) {
+      } else if (equal_strings(argv[ii], "-h") || equal_strings(argv[ii], "--help")) {
 	help();
 	exit(0);
       } else {

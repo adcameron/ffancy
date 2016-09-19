@@ -6,7 +6,7 @@
 #include <assert.h>
 
 // user defined libraries
-#include "stringsequal.h"
+#include "equalstrings.h"
 
 #define TRUE 1
 #define FALSE 0
@@ -100,52 +100,52 @@ int main (int argc, char** argv) {
   if (argc > 1) {
     i=1;
     while (i < argc) {
-      if (strings_equal(argv[i],"-i")) {
+      if (equal_strings(argv[i],"-i")) {
         i++;
         inputfile = fopen(argv[i], "r");
-      } else if (strings_equal(argv[i],"-o")) {
+      } else if (equal_strings(argv[i],"-o")) {
         i++;
         outputfile = fopen(argv[i], "w+");
-      } else if (strings_equal(argv[i],"-dm")) {
+      } else if (equal_strings(argv[i],"-dm")) {
         i++;
         dm = atof(argv[i]);
-      } else if (strings_equal(argv[i],"-a")) {
+      } else if (equal_strings(argv[i],"-a")) {
         i++;
         acc = atof(argv[i]);
-      } else if (strings_equal(argv[i],"-tsamp")) {
+      } else if (equal_strings(argv[i],"-tsamp")) {
         i++;
         tsamp = atof(argv[i]);
-      } else if (strings_equal(argv[i],"-thresh")) {
+      } else if (equal_strings(argv[i],"-thresh")) {
 	i++;
 	thresh = atof(argv[i]);
-      } else if (strings_equal(argv[i],"-lthresh")) {
+      } else if (equal_strings(argv[i],"-lthresh")) {
 	i++;
 	lthresh = atof(argv[i]);
-      } else if (strings_equal(argv[i],"-dthresh")) {
+      } else if (equal_strings(argv[i],"-dthresh")) {
         i++;
         dthresh = atof(argv[i])/100;
-      } else if (strings_equal(argv[i],"-combine")) {
+      } else if (equal_strings(argv[i],"-combine")) {
         COMBINE_FLAG = TRUE;
-      } else if (strings_equal(argv[i],"-dc")) {
+      } else if (equal_strings(argv[i],"-dc")) {
         i++;
         pulsar_dc = atof(argv[i]);
-      } else if (strings_equal(argv[i],"-algorithm")) {
+      } else if (equal_strings(argv[i],"-algorithm")) {
         i++;
         algorithm = atoi(argv[i]);
-      } else if (strings_equal(argv[i],"-tobs")) {
+      } else if (equal_strings(argv[i],"-tobs")) {
         i++;
         tobs = atof(argv[i]);
-      } else if (strings_equal(argv[i],"-harmonics")) {
+      } else if (equal_strings(argv[i],"-harmonics")) {
         HARMONIC_FLAG = TRUE;
-      } else if (strings_equal(argv[i],"-ranked")) {
+      } else if (equal_strings(argv[i],"-ranked")) {
         RANKED_FLAG = TRUE;
-      } else if (strings_equal(argv[i],"-highprime")) {
+      } else if (equal_strings(argv[i],"-highprime")) {
         i++;
         highprime = atoi(argv[i]);
-      } else if (strings_equal(argv[i],"-tolerance")) {
+      } else if (equal_strings(argv[i],"-tolerance")) {
         i++;
         tolerance = atof(argv[i]);
-      } else if (strings_equal(argv[i], "-h") || strings_equal(argv[i], "--help")) {
+      } else if (equal_strings(argv[i], "-h") || equal_strings(argv[i], "--help")) {
         help();
         exit(0);
       } else {

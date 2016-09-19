@@ -10,7 +10,7 @@
 #include "ffadata.h"
 #include "paddedarray.h"
 #include "dataarray.h"
-#include "stringsequal.h"
+#include "equalstrings.h"
 #include "ffa.h"
 #include "mad.h"
 
@@ -119,75 +119,75 @@ int main(int argc, char** argv) {
   if (argc > 1) {
     i=1;
     while (i < argc) {
-      if (strings_equal(argv[i],"-s")) {
+      if (equal_strings(argv[i],"-s")) {
 	i++;
 	samples = atoi(argv[i]);
-      } else if (strings_equal(argv[i],"-lp")) {
+      } else if (equal_strings(argv[i],"-lp")) {
 	i++;
 	lowperiod = atoi(argv[i]);
-      } else if (strings_equal(argv[i],"-l")) {
+      } else if (equal_strings(argv[i],"-l")) {
 	i++;
 	loops = atoi(argv[i]);
 	loop_flag = TRUE;
-      } else if (strings_equal(argv[i],"-pp")) {
+      } else if (equal_strings(argv[i],"-pp")) {
 	i++;
 	seedperiod = atoi(argv[i]);
-      } else if (strings_equal(argv[i],"-pw")) {
+      } else if (equal_strings(argv[i],"-pw")) {
 	i++;
 	seedwidth = atoi(argv[i]);
-      } else if (strings_equal(argv[i],"-o")) {
+      } else if (equal_strings(argv[i],"-o")) {
 	i++;
 	outputfile = fopen(argv[i], "w+");
-      } else if (strings_equal(argv[i],"-a")) {
+      } else if (equal_strings(argv[i],"-a")) {
 	i++;
 	metric_choice = atoi(argv[i]);
-      } else if (strings_equal(argv[i], "-h") || strings_equal(argv[i], "--help")) {
+      } else if (equal_strings(argv[i], "-h") || equal_strings(argv[i], "--help")) {
 	ffa_help();
 	exit(0);
-      } else if (strings_equal(argv[i], "-i")) {
+      } else if (equal_strings(argv[i], "-i")) {
 	i++;
 	inputfile = fopen(argv[i], "r");
-      } else if (strings_equal(argv[i], "-pdump")) {
+      } else if (equal_strings(argv[i], "-pdump")) {
 	i++;
 	profilefile = fopen(argv[i], "w+");
 	assert(profilefile != NULL);
-      } else if (strings_equal(argv[i], "-npdump")) {
+      } else if (equal_strings(argv[i], "-npdump")) {
 	i++;
 	normprofilefile = fopen(argv[i], "w+");
 	assert(normprofilefile != NULL);
-      } else if (strings_equal(argv[i], "-ds")) {
+      } else if (equal_strings(argv[i], "-ds")) {
 	i++;
 	prelim_downsamples = atoi(argv[i]);
-      } else if (strings_equal(argv[i], "-parrot")) {
+      } else if (equal_strings(argv[i], "-parrot")) {
 	i++;
 	parrotfile = fopen(argv[i], "w+");
 	assert(parrotfile != NULL);	
-      } else if (strings_equal(argv[i], "-hp")) {
+      } else if (equal_strings(argv[i], "-hp")) {
 	hp_flag = TRUE;
 	i++;
 	highperiod = atoi(argv[i]);
-      } else if (strings_equal(argv[i], "-original")) {
+      } else if (equal_strings(argv[i], "-original")) {
 	i++;
 	originalfile = fopen(argv[i], "w+");
 	assert(originalfile != NULL);
-      } else if (strings_equal(argv[i], "-original-dr")) {
+      } else if (equal_strings(argv[i], "-original-dr")) {
 	i++;
 	originalderedfile = fopen(argv[i], "w+");
 	assert(originalderedfile != NULL);
-      } else if (strings_equal(argv[i], "-presto")) {
+      } else if (equal_strings(argv[i], "-presto")) {
 	PRESTO_flag = TRUE;
-	//} else if (strings_equal(argv[i], "-sigpyproc")) {
+	//} else if (equal_strings(argv[i], "-sigpyproc")) {
 	//SIGPYPROC_flag = TRUE;
-      } else if (strings_equal(argv[i], "-mf")) {
+      } else if (equal_strings(argv[i], "-mf")) {
 	i++;
 	mfsize = atoi(argv[i]);
-      } else if (strings_equal(argv[i], "-dered")) {
+      } else if (equal_strings(argv[i], "-dered")) {
 	dered_flag = TRUE;
-      } else if (strings_equal(argv[i], "-dw")) {
+      } else if (equal_strings(argv[i], "-dw")) {
 	i++;
 	user_dw_flag = TRUE;
 	dered_window = atoi(argv[i]);
-      } else if (strings_equal(argv[i], "-timenorm")) {
+      } else if (equal_strings(argv[i], "-timenorm")) {
 	timenorm_flag = TRUE;
       } else {
 	printf("Unknown argument (%s) passed to ffancy.\nUse -h / --help to display help menu with acceptable arguments.\n",argv[i]);

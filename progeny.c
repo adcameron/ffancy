@@ -6,7 +6,7 @@
 #include <assert.h>
 
 // User defined libraries
-#include "stringsequal.h"
+#include "equalstrings.h"
 #include "whitenoise.h"
 
 #define TRUE 1
@@ -92,46 +92,46 @@ int main(int argc, char** argv) {
   if (argc > 1) {
     i=1;
     while (i < argc) {
-      if (strings_equal(argv[i],"-nbins")) {
+      if (equal_strings(argv[i],"-nbins")) {
 	i++;
 	nbins = atoi(argv[i]);
-      } else if (strings_equal(argv[i],"-baseline")) {
+      } else if (equal_strings(argv[i],"-baseline")) {
 	i++;
 	base = atof(argv[i]);
-      } else if (strings_equal(argv[i],"-height")) {
+      } else if (equal_strings(argv[i],"-height")) {
 	i++;
 	pulseheight = atof(argv[i]);
-      } else if (strings_equal(argv[i],"-width")) {
+      } else if (equal_strings(argv[i],"-width")) {
 	i++;
 	pulsewidth = atof(argv[i]);
-      } else if (strings_equal(argv[i],"-dc")) { 
+      } else if (equal_strings(argv[i],"-dc")) { 
 	i++;
 	dc_flag = TRUE;
 	dc = atof(argv[i]);
-      } else if (strings_equal(argv[i],"-center")) {
+      } else if (equal_strings(argv[i],"-center")) {
 	i++;
 	pulsecenter = atoi(argv[i]);
-      } else if (strings_equal(argv[i],"-whitenoise")) {
+      } else if (equal_strings(argv[i],"-whitenoise")) {
 	whitenoise_flag = TRUE;
-      } else if (strings_equal(argv[i],"-o")) {
+      } else if (equal_strings(argv[i],"-o")) {
 	i++;
 	outputfile = fopen(argv[i], "w+");
-      } else if (strings_equal(argv[i], "-i")) {
+      } else if (equal_strings(argv[i], "-i")) {
 	i++;
 	inputfile = fopen(argv[i], "r");
-      } else if (strings_equal(argv[i],"-format")) {
+      } else if (equal_strings(argv[i],"-format")) {
 	i++;
 	format = atoi(argv[i]);
-      } else if (strings_equal(argv[i],"-shape")) {
+      } else if (equal_strings(argv[i],"-shape")) {
 	i++;
 	pulseshape = atoi(argv[i]);
-      } else if (strings_equal(argv[i],"-sigma")) {
+      } else if (equal_strings(argv[i],"-sigma")) {
 	i++;
 	sigma = atof(argv[i]);
-      } else if (strings_equal(argv[i], "-h") || strings_equal(argv[i], "--help")) {
+      } else if (equal_strings(argv[i], "-h") || equal_strings(argv[i], "--help")) {
 	progeny_help();
 	exit(0);
-      } else if (strings_equal(argv[i], "-scatter")) {
+      } else if (equal_strings(argv[i], "-scatter")) {
 	i++;
 	scatter_time = atof(argv[i]);
       } else {
