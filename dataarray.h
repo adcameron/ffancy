@@ -3,6 +3,7 @@
 // Andrew Cameron, MPIFR, 25/02/2015
 // 08/03/2016 - Added function to read Float data for sake of PRESTO
 // 06/06/2016 - Added function for float data in SIGPYPROC format - a hybrid of SIGPROC and PRESTO - LARGELY UNTESTED - USE WITH CAUTION
+// 19/09/2016 - Updated noise generation code
 
 #include <stdio.h>
 #include <stdlib.h>
@@ -50,9 +51,9 @@ paddedArray* downsampleDataArray(paddedArray* sourcedata);
 paddedArray* dereddenDataArray(paddedArray* sourcedata);
 
 // generates noise for padding purposes
-long seedNoisyPadding();
+void seedNoisyPadding();
 
-ffadata generateNoisyPadding(long *idum, double rms, double mean);
+ffadata generateNoisyPadding(double rms, double mean);
 
 ffadata generateZeroPadding();
 

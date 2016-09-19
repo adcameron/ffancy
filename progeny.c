@@ -20,7 +20,7 @@
 
 // PROGENY - Program to build custom profiles for metric / normalisation standardised testing
 // Written by Andrew Cameron
-// Version 1.4.1 - Last updated 11/09/2015
+// Version 1.4.2 - Last updated 19/09/2015
 
 /*
 
@@ -37,6 +37,7 @@ CHANGELOG:
 08/12/2015 - v1.3.1 - Updated scattered Gaussian to correctly implement exponential convolution
            - V1.4.0 - Rewrote pulse seeded algorithm to allow for scattering of any pulse shape combination
 11/09/2016 - v1.4.1 - Rewrote help menu to update for publication
+19/09/2016 - v1.4.2 - Modified noise generation code to reflect changes in whitenoise.c/h
 */
 
 // ***** FUNCTION PROTOTYPES *****
@@ -78,7 +79,8 @@ int main(int argc, char** argv) {
   int format = 1;
 
   int i; // counter
-  long seed = startseed();
+  // start the random number generator
+  startseed();
 
   // check that a valid number of arguments have been passed
   if (argc < 2) {
@@ -246,7 +248,7 @@ int main(int argc, char** argv) {
     // generate baseline with noise if required
 
     if (whitenoise_flag == TRUE) {
-      folded_profile[i] = folded_profile[i] + generateWhiteNoise(&seed, sigma, base);
+      folded_profile[i] = folded_profile[i] + generateWhiteNoise(sigma, base);
     } else {
       folded_profile[i] = folded_profile[i] + base;
     }
@@ -414,7 +416,7 @@ void progeny_help() {
 
   printf("\nPROGENY - a program to construct artificial pulsar profiles.\n");
   printf("To be used to generate standardised tests for FFANCY normalisation scheme and metrics.\n");
-  printf("Version 1.4.1, last updated 11/09/2016.\n");
+  printf("Version 1.4.2, last updated 19/09/2016.\n");
   printf("Written by Andrew Cameron, MPIFR IMPRS PhD Student.\n");
   printf("\n*****\n\n");
   printf("Input options:\n");

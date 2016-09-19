@@ -15,6 +15,7 @@
 //              that the window remains constant in proportion to the sample size.
 // 15/04/2016 - Downsampling routine no longer includes automatic de-reddening. This must be applied separately.
 // 06/06/2016 - Added SIGPYPROC read/write functionality
+// 19/09/2016 - Updated noise generation code
 
 #include <stdio.h>
 #include <stdlib.h>
@@ -442,15 +443,15 @@ paddedArray* dereddenDataArray(paddedArray* sourcedata) {
 
 }
 
-long seedNoisyPadding() {
+void seedNoisyPadding() {
 
-  return startseed();
-
+  startseed();
+  return;
 }
 
-ffadata generateNoisyPadding(long *idum, double rms, double mean) {
+ffadata generateNoisyPadding(double rms, double mean) {
 
-  return (ffadata)generateWhiteNoise(idum, rms, mean);
+  return (ffadata)generateWhiteNoise(rms, mean);
 
 }
 
