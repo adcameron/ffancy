@@ -22,7 +22,7 @@
 // Program to convert ffa periodogram output from FFAncy into BEST format files
 // Based upon the tcsh script ffa2best.csh
 // Written by Andrew Cameron
-// Version 1.2.3 - Last updated 29/04/2016
+// Version 1.2.4 - Last updated 14/06/2017
 
 // CHANGELOG
 // 26/04/2016 - v1.1.0 - Added a candidate combiner (algorithm dependent), which groups together nearby peaks that are likely to be related.
@@ -33,6 +33,8 @@
 // 12/07/2016 - v1.2.2 - Fixed a bug in the peak finder identified by Ewan Barr
 // 11/09/2016 - v1.2.3 - Updated and clarified help menu for publication
 //                     - Changed accepted algorithms from 6 & 7 to 1 & 2 as per paper notation
+// 14/06/2017 - v1.2.4 - Bug fix - a value of 64us time sampling was hardcoded into several locations of the code, causing other values of tsamp to be converted incorrectly.
+//                     - Locations identified and corrected so as to use the runtime tsamp instead of the default 64 us.
 
 // ***** FUNCTION PROTOTYPES *****
 
@@ -115,6 +117,7 @@ int main (int argc, char** argv) {
       } else if (equal_strings(argv[i],"-tsamp")) {
         i++;
         tsamp = atof(argv[i]);
+	printf("tsamp = %f\n", tsamp);
       } else if (equal_strings(argv[i],"-thresh")) {
 	i++;
 	thresh = atof(argv[i]);
@@ -592,7 +595,7 @@ int peakCombiner(FILE *inputfile, FILE *outputfile, int npeaks, float pulsar_dc,
     //printf("PEAK EVALUATED: Period = %f | SNR = %f | ii = %d | ACTIVE = %d | CHECKED = %d\n", periods[ii], snrs[ii], ii, active_peaks[ii], checked_peaks[ii]);
     if (active_peaks[ii] == TRUE) {
       //printf("Writing out period = %f | snr = %f\n", periods[ii], snrs[ii]);
-      writePeak(outputfile, periods[ii]*1000/64, snrs[ii], tsamp);
+      writePeak(outputfile, periods[ii]*1000/tsamp, snrs[ii], tsamp);
       return_npeaks++;
     }
   }
@@ -715,13 +718,13 @@ void rankedWriter(FILE *inputfile, FILE *outputfile, int npeaks, float tsamp, in
       // we now have the maximum peak that has not been checked
       //printf("RANKED: Found max at period %f and snr %f.\n", periods[max_position], snrs[max_position]);
       // write it out
-      writePeak(outputfile, periods[max_position]*1000/64, snrs[max_position], tsamp);
+      writePeak(outputfile, periods[max_position]*1000/tsamp, snrs[max_position], tsamp);
       checked_peaks[max_position] = TRUE;
       total_checked++;
     }
   } else if (ranked == FALSE) {
     for (ii = 0; ii < npeaks; ii++) {
-      writePeak(outputfile, periods[ii]*1000/64, snrs[ii], tsamp);
+      writePeak(outputfile, periods[ii]*1000/tsamp, snrs[ii], tsamp);
     }
   }
   return;
